@@ -29,9 +29,9 @@ Antes de trabajar en cualquier tarea, leé:
 - Versiones: usar la última estable al arrancar y fijarla en `package.json`
 
 ## Comandos
-(Completar en Sprint 1 y mantener actualizado.)
-- `npm run dev` — servidor local
-- `npm run lint` / `npm run typecheck` / `npm test` / `npm run test:e2e`
+(Mantener actualizado. En esta PC Node vive en `C:\Users\BetroniV\tools\node`, sin instalador; si `node` no se reconoce, reabrir la terminal.)
+- `npm run dev` — servidor local (http://localhost:3000)
+- `npm run lint` / `npm run typecheck` / `npm test` / `npm run test:e2e` (e2e requiere `npx playwright install` una vez)
 - `npm run build` — build de producción
 - `npx supabase db reset` — recrear la base local desde las migraciones
 
