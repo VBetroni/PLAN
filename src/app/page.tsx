@@ -1,3 +1,4 @@
+import { io } from "next/cache";
 import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/features/auth/actions";
@@ -5,6 +6,8 @@ import { t } from "@/lib/i18n/es-AR";
 import { createClient } from "@/lib/supabase/server";
 
 async function Greeting() {
+  // Per-visitor work (session + database read): never part of the static shell.
+  await io();
   const supabase = await createClient();
   const { data: profile } = await supabase.from("profiles").select("display_name").maybeSingle();
   const name = profile?.display_name?.split(" ")[0];
