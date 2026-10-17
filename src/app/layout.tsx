@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { t } from "@/lib/i18n/es-AR";
 import "./globals.css";
@@ -16,6 +16,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: t.app.name,
   description: t.app.tagline,
+  icons: { icon: "/icons/192", apple: "/icons/180" },
+  // iPhone: open as a standalone app when added to the Home Screen.
+  appleWebApp: { capable: true, title: t.app.name, statusBarStyle: "default" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#18181b",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
