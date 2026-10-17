@@ -1,0 +1,14 @@
+# Secretos: nunca al repositorio
+.env
+.env.*
+!.env.example
+
+# Dependencias y builds
+node_modules/
+.next/
+out/
+coverage/
+
+# Sistema
+.DS_Store
+Thumbs.db
