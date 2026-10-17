@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
   const { searchParams, origin } = request.nextUrl;
   const code = searchParams.get("code");
   const next = safeNextPath(searchParams.get("next"));
+  let reason = searchParams.get("error_description") ?? searchParams.get("error") ?? "no_code";
 
   if (code) {
     const supabase = await createClient();
@@ -16,6 +17,13 @@ export async function GET(request: NextRequest) {
       const base = forwardedHost && origin.startsWith("https") ? `https://${forwardedHost}` : origin;
       return NextResponse.redirect(`${base}${next}`);
     }
+    reason = error.message;
   }
-  return NextResponse.redirect(`${origin}/login?error=oauth`);
+
+  // Technical reason only (no tokens or personal data), to make login failures diagnosable.
+  console.error("auth callback failed:", reason);
+  const failure = new URL("/login", origin);
+  failure.searchParams.set("error", "oauth");
+  failure.searchParams.set("reason", reason.slice(0, 200));
+  return NextResponse.redirect(failure);
 }
