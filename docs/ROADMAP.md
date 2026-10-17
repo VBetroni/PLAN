@@ -22,8 +22,8 @@ Objetivo: app desplegada con login de Google, y los vencimientos de facturas fun
 
 - [x] Proyecto Next.js + TypeScript estricto + Tailwind + shadcn/ui, con CI (lint, typecheck, tests).
 - [x] Verificar y documentar límites de Vercel y Supabase (ADR de cron y de uso comercial). Ver `docs/decisions/001-cron-y-limites.md`; queda por confirmar `pg_cron` en el plan gratuito al activarlo.
-- [ ] Supabase local y remoto, migraciones iniciales: `profiles`, `projects`, `items`, `bill_plans`, `bill_details`, `checklist_items`, con RLS y tests de aislamiento.
-- [ ] Login con Google (Supabase Auth), creación automática de perfil, cierre de sesión.
+- [x] Supabase remoto (proyecto `rutina-dev`; sin Docker en esta PC, no hay base local), migraciones iniciales: `profiles`, `projects`, `items`, `bill_plans`, `bill_details`, `checklist_items`, con RLS y tests de aislamiento (`tests/integration/rls.test.ts`). **Pendiente:** aplicar las migraciones a `rutina-prod` antes del despliegue.
+- [x] Login con Google (Supabase Auth), creación automática de perfil, cierre de sesión. Probado en local contra `rutina-dev`. **Pendiente:** configurar URLs de producción en Google y Supabase al desplegar.
 - [ ] Despliegue en Vercel desde `main`; variables de entorno documentadas en `.env.example`.
 - [ ] PWA básica: manifest, íconos, instalable en iPhone.
 - [ ] Items: crear, editar, completar, borrar; Inbox de captura rápida.

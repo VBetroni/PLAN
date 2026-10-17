@@ -4,4 +4,11 @@ export const t = {
     name: "Rutina",
     tagline: "Tu rutina, en un solo lugar.",
   },
+  auth: {
+    signInWithGoogle: "Ingresar con Google",
+    signOut: "Cerrar sesión",
+    error: "No pudimos iniciar sesión. Probá de nuevo.",
+    greeting: (name: string) => `Hola, ${name}`,
+    greetingAnonymous: "Hola",
+  },
 } as const;
