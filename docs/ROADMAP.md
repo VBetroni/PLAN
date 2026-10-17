@@ -20,8 +20,8 @@ Listo cuando: el repositorio tiene los documentos y Claude Code los lee al arran
 ## Sprint 1 — Fundaciones y facturas (semana 1)
 Objetivo: app desplegada con login de Google, y los vencimientos de facturas funcionando de punta a punta (sin avisos todavía).
 
-- [ ] Proyecto Next.js + TypeScript estricto + Tailwind + shadcn/ui, con CI (lint, typecheck, tests).
-- [ ] Verificar y documentar límites de Vercel y Supabase (ADR de cron y de uso comercial).
+- [x] Proyecto Next.js + TypeScript estricto + Tailwind + shadcn/ui, con CI (lint, typecheck, tests).
+- [x] Verificar y documentar límites de Vercel y Supabase (ADR de cron y de uso comercial). Ver `docs/decisions/001-cron-y-limites.md`; queda por confirmar `pg_cron` en el plan gratuito al activarlo.
 - [ ] Supabase local y remoto, migraciones iniciales: `profiles`, `projects`, `items`, `bill_plans`, `bill_details`, `checklist_items`, con RLS y tests de aislamiento.
 - [ ] Login con Google (Supabase Auth), creación automática de perfil, cierre de sesión.
 - [ ] Despliegue en Vercel desde `main`; variables de entorno documentadas en `.env.example`.
