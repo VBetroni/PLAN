@@ -1,17 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, Fraunces, Manrope } from "next/font/google";
 import { t } from "@/lib/i18n/es-AR";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Fonts for both visual directions (see styles/themes.css). Once a direction is chosen,
+// the fonts of the other one are removed.
+const dmSans = DM_Sans({ variable: "--font-dm-sans", subsets: ["latin"] });
+const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"] });
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: t.app.name,
@@ -26,12 +22,20 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+// Follows the phone's light/dark setting before the first paint (no flash).
+const colorSchemeScript = `document.documentElement.classList.toggle("dark",window.matchMedia("(prefers-color-scheme: dark)").matches)`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es-AR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme="a"
+      suppressHydrationWarning
+      className={`${dmSans.variable} ${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: colorSchemeScript }} />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

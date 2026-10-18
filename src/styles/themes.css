@@ -1,0 +1,177 @@
+/*
+ * DESIGN TOKENS — the single place that defines how Rutina looks.
+ *
+ * A "direction" is a [data-theme="…"] block (light) plus [data-theme="…"].dark (dark mode).
+ * Components never use raw colors: they use semantic names (bg-primary, bg-context-work-soft…).
+ * To change the look later, edit values here. Nothing else needs to change.
+ *
+ * Meaning of the names:
+ *   --primary        the brand accent (main buttons, active tab, links, empty-state art)
+ *   --brand-soft     a light tint of the accent (selected pill, illustration fill)
+ *   --accent         shadcn's subtle hover highlight (NOT the brand color)
+ *   --context-*      one color per context: solid (dots), soft (chip background), ink (chip text)
+ *   --elevation      card shadow
+ *   --theme-font-*   body and heading font stacks (the font files are loaded in layout.tsx)
+ */
+
+/* ------------------------------------------------------------------ */
+/* Direction A — "Cuaderno": warm paper, terracotta, serif headings    */
+/* ------------------------------------------------------------------ */
+[data-theme="a"] {
+  --theme-font-body: var(--font-dm-sans), system-ui, sans-serif;
+  --theme-font-heading: var(--font-fraunces), Georgia, serif;
+  --radius: 1.25rem;
+
+  --background: oklch(0.975 0.012 85);
+  --foreground: oklch(0.25 0.02 60);
+  --card: oklch(0.992 0.006 85);
+  --card-foreground: oklch(0.25 0.02 60);
+  --popover: oklch(0.992 0.006 85);
+  --popover-foreground: oklch(0.25 0.02 60);
+  --primary: oklch(0.55 0.14 40);
+  --primary-foreground: oklch(0.985 0.01 85);
+  --brand-soft: oklch(0.93 0.04 50);
+  --secondary: oklch(0.94 0.015 80);
+  --secondary-foreground: oklch(0.25 0.02 60);
+  --muted: oklch(0.945 0.012 80);
+  --muted-foreground: oklch(0.5 0.02 60);
+  --accent: oklch(0.93 0.02 75);
+  --accent-foreground: oklch(0.25 0.02 60);
+  --destructive: oklch(0.55 0.2 27);
+  --success: oklch(0.5 0.1 155);
+  --border: oklch(0.89 0.015 80);
+  --input: oklch(0.89 0.015 80);
+  --ring: oklch(0.65 0.12 40);
+  --elevation: 0 1px 2px oklch(0.3 0.03 60 / 6%), 0 8px 24px -8px oklch(0.3 0.03 60 / 14%);
+
+  --context-work: oklch(0.55 0.1 250);
+  --context-work-soft: oklch(0.92 0.03 250);
+  --context-work-ink: oklch(0.38 0.08 250);
+  --context-personal: oklch(0.55 0.09 150);
+  --context-personal-soft: oklch(0.92 0.04 150);
+  --context-personal-ink: oklch(0.36 0.07 150);
+  --context-health: oklch(0.6 0.13 10);
+  --context-health-soft: oklch(0.93 0.03 10);
+  --context-health-ink: oklch(0.42 0.12 10);
+  --context-finance: oklch(0.68 0.12 80);
+  --context-finance-soft: oklch(0.93 0.05 85);
+  --context-finance-ink: oklch(0.4 0.08 70);
+}
+
+[data-theme="a"].dark {
+  --background: oklch(0.22 0.015 60);
+  --foreground: oklch(0.94 0.012 80);
+  --card: oklch(0.26 0.015 60);
+  --card-foreground: oklch(0.94 0.012 80);
+  --popover: oklch(0.26 0.015 60);
+  --popover-foreground: oklch(0.94 0.012 80);
+  --primary: oklch(0.72 0.13 45);
+  --primary-foreground: oklch(0.2 0.02 50);
+  --brand-soft: oklch(0.33 0.05 45);
+  --secondary: oklch(0.3 0.014 60);
+  --secondary-foreground: oklch(0.94 0.012 80);
+  --muted: oklch(0.3 0.014 60);
+  --muted-foreground: oklch(0.72 0.02 75);
+  --accent: oklch(0.32 0.016 60);
+  --accent-foreground: oklch(0.94 0.012 80);
+  --destructive: oklch(0.7 0.17 25);
+  --success: oklch(0.75 0.11 155);
+  --border: oklch(1 0.01 80 / 12%);
+  --input: oklch(1 0.01 80 / 16%);
+  --ring: oklch(0.65 0.1 45);
+  --elevation: 0 1px 2px oklch(0 0 0 / 30%), 0 8px 24px -8px oklch(0 0 0 / 40%);
+
+  --context-work: oklch(0.72 0.1 250);
+  --context-work-soft: oklch(0.32 0.04 250);
+  --context-work-ink: oklch(0.85 0.06 250);
+  --context-personal: oklch(0.72 0.1 150);
+  --context-personal-soft: oklch(0.32 0.04 150);
+  --context-personal-ink: oklch(0.85 0.07 150);
+  --context-health: oklch(0.74 0.12 10);
+  --context-health-soft: oklch(0.33 0.05 10);
+  --context-health-ink: oklch(0.86 0.07 10);
+  --context-finance: oklch(0.78 0.12 85);
+  --context-finance-soft: oklch(0.34 0.05 85);
+  --context-finance-ink: oklch(0.88 0.08 85);
+}
+
+/* ------------------------------------------------------------------ */
+/* Direction B — "Tablero": cool, crisp, indigo, one geometric font    */
+/* ------------------------------------------------------------------ */
+[data-theme="b"] {
+  --theme-font-body: var(--font-manrope), system-ui, sans-serif;
+  --theme-font-heading: var(--font-manrope), system-ui, sans-serif;
+  --radius: 0.5rem;
+
+  --background: oklch(0.975 0.004 250);
+  --foreground: oklch(0.2 0.03 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.03 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.03 265);
+  --primary: oklch(0.5 0.2 275);
+  --primary-foreground: oklch(0.985 0 0);
+  --brand-soft: oklch(0.94 0.04 275);
+  --secondary: oklch(0.955 0.01 260);
+  --secondary-foreground: oklch(0.2 0.03 265);
+  --muted: oklch(0.96 0.006 255);
+  --muted-foreground: oklch(0.48 0.03 262);
+  --accent: oklch(0.94 0.02 275);
+  --accent-foreground: oklch(0.2 0.03 265);
+  --destructive: oklch(0.57 0.23 25);
+  --success: oklch(0.55 0.15 155);
+  --border: oklch(0.915 0.01 260);
+  --input: oklch(0.915 0.01 260);
+  --ring: oklch(0.6 0.15 275);
+  --elevation: 0 1px 2px oklch(0.2 0.03 265 / 8%);
+
+  --context-work: oklch(0.6 0.17 250);
+  --context-work-soft: oklch(0.94 0.04 245);
+  --context-work-ink: oklch(0.4 0.14 250);
+  --context-personal: oklch(0.62 0.15 160);
+  --context-personal-soft: oklch(0.94 0.05 160);
+  --context-personal-ink: oklch(0.4 0.1 160);
+  --context-health: oklch(0.62 0.21 10);
+  --context-health-soft: oklch(0.94 0.04 5);
+  --context-health-ink: oklch(0.45 0.18 10);
+  --context-finance: oklch(0.75 0.16 80);
+  --context-finance-soft: oklch(0.95 0.07 90);
+  --context-finance-ink: oklch(0.42 0.1 65);
+}
+
+[data-theme="b"].dark {
+  --background: oklch(0.18 0.025 265);
+  --foreground: oklch(0.96 0.005 260);
+  --card: oklch(0.22 0.03 265);
+  --card-foreground: oklch(0.96 0.005 260);
+  --popover: oklch(0.22 0.03 265);
+  --popover-foreground: oklch(0.96 0.005 260);
+  --primary: oklch(0.7 0.16 275);
+  --primary-foreground: oklch(0.18 0.03 270);
+  --brand-soft: oklch(0.3 0.07 275);
+  --secondary: oklch(0.27 0.03 265);
+  --secondary-foreground: oklch(0.96 0.005 260);
+  --muted: oklch(0.27 0.03 265);
+  --muted-foreground: oklch(0.72 0.03 260);
+  --accent: oklch(0.3 0.04 270);
+  --accent-foreground: oklch(0.96 0.005 260);
+  --destructive: oklch(0.7 0.19 22);
+  --success: oklch(0.75 0.14 155);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.62 0.14 275);
+  --elevation: 0 1px 2px oklch(0 0 0 / 40%);
+
+  --context-work: oklch(0.72 0.15 250);
+  --context-work-soft: oklch(0.31 0.07 250);
+  --context-work-ink: oklch(0.86 0.08 250);
+  --context-personal: oklch(0.74 0.15 160);
+  --context-personal-soft: oklch(0.31 0.06 160);
+  --context-personal-ink: oklch(0.87 0.09 160);
+  --context-health: oklch(0.72 0.18 10);
+  --context-health-soft: oklch(0.32 0.08 10);
+  --context-health-ink: oklch(0.87 0.09 10);
+  --context-finance: oklch(0.8 0.15 85);
+  --context-finance-soft: oklch(0.33 0.07 85);
+  --context-finance-ink: oklch(0.9 0.09 90);
+}
