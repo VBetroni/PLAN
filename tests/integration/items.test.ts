@@ -4,7 +4,7 @@
 // DEV Supabase project. Opt-in with RUN_DB_TESTS=true in .env.local.
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { listInbox, listOpenItems } from "@/features/items/queries";
+import { listInbox, listOpenItems, listRecentlyDone } from "@/features/items/queries";
 import { createItem, deleteItem, setItemDone, updateItem } from "@/features/items/service";
 import type { Database } from "@/lib/supabase/database.types";
 import { createAdminClient, createTestUser, dbTestsEnabled, type TestUser } from "./helpers";
@@ -93,6 +93,22 @@ describe.skipIf(!dbTestsEnabled)("ciclo de vida de items", () => {
     expect(ids.indexOf(second.id)).toBeLessThan(ids.indexOf(first.id));
     expect(ids).not.toContain(organized.id);
     expect(inbox.every((i) => i.user_id === bob.id)).toBe(true);
+  });
+
+  it("los hechos recientes aparecen y desaparecen al reabrirlos", async () => {
+    const item = await newItem(alice.client, "Hecho por error");
+    await setItemDone(alice.client, item.id, true);
+
+    const recent = await listRecentlyDone(alice.client);
+    expect(recent.map((i) => i.id)).toContain(item.id);
+    expect(await listRecentlyDone(bob.client)).not.toContainEqual(expect.objectContaining({ id: item.id }));
+
+    // A completion from two days ago is no longer "recent".
+    const twoDaysLater = new Date(Date.now() + 48 * 60 * 60 * 1000);
+    expect((await listRecentlyDone(alice.client, twoDaysLater)).map((i) => i.id)).not.toContain(item.id);
+
+    await setItemDone(alice.client, item.id, false);
+    expect((await listRecentlyDone(alice.client)).map((i) => i.id)).not.toContain(item.id);
   });
 
   it("los abiertos muestran primero los que tienen fecha más cercana", async () => {
