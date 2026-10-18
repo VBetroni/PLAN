@@ -1,13 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fraunces, Manrope } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import { t } from "@/lib/i18n/es-AR";
 import "./globals.css";
 
-// Fonts for both visual directions (see styles/themes.css). Once a direction is chosen,
-// the fonts of the other one are removed.
+// Fonts referenced by styles/themes.css.
 const dmSans = DM_Sans({ variable: "--font-dm-sans", subsets: ["latin"] });
 const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"] });
-const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: t.app.name,
@@ -29,9 +27,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es-AR"
-      data-theme="a"
       suppressHydrationWarning
-      className={`${dmSans.variable} ${fraunces.variable} ${manrope.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${fraunces.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: colorSchemeScript }} />

@@ -2,9 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseEnv } from "./env";
 
-// /diseno is a temporary design-picker with sample data only: open in local development, never in production.
-const PUBLIC_PATHS =
-  process.env.NODE_ENV === "production" ? ["/login", "/auth"] : ["/login", "/auth", "/diseno"];
+const PUBLIC_PATHS = ["/login", "/auth"];
 
 function isPublic(pathname: string) {
   return PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
